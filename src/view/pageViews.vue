@@ -1,7 +1,9 @@
 <template>
   <div class="pageViews">
       <TabBar @showSearch="open"/>
-      <router-view></router-view>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
       <SearchView v-show="search" @closeTalion='close'/>
   </div>
 </template>
@@ -17,7 +19,8 @@ export default {
   },
   data() {
     return {
-      search:''
+      search:'',
+      slide:'fade-enter'
     };
   },
   methods:{
@@ -27,6 +30,13 @@ export default {
     close(){
       this.search=''
     }
+  },
+  watch:{
+    '$route' (to,from){
+      const toDepth = to.path.split('/').length;
+      const fromDepth = to.path.split('/').length;
+      this.slide = toDepth<fromDepth?'slide-right':'slide-left'
+    }
   }
 
 };
@@ -34,5 +44,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
 </style>

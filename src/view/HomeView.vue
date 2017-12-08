@@ -7,14 +7,13 @@
     <button @click="$router.push({name:'InfoView'})">我的喜欢</button>
     <button @click="$router.push({name:'InfoView'})">情感电影</button>
     <button @click="$router.push({name:'InfoView'})">爱情喜剧</button>
-    <button @click="setA">爱情喜剧</button>
-
+    <button @click="setA">{{a}}</button>
     {{getA}}
   </div>
 </template>
 
 <script>
-import { mapActions,mapGetters } from 'vuex'
+import { mapActions,mapGetters, mapState } from 'vuex'
 import TabBar from "../components/tebBar";
 import logo from '../assets/logo.png'
 export default {
@@ -28,9 +27,12 @@ export default {
     };
   },
   methods:{
-    ...mapActions(['setA'])
+    ...mapActions(['setA']),
   },
-  computed:mapGetters(['getA'])
+  computed:{
+    ...mapGetters(['getA']),
+    ...mapState(['a'])
+  }
 };
 </script>
 
