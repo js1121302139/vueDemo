@@ -11,6 +11,7 @@
 <script>
 import TabBar from "../components/tebBar";
 import SearchView from "../view/SearchView";
+import { mapState } from "vuex";
 export default {
   name: "pageViews",
   components: {
@@ -45,9 +46,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+  transition: opacity .5s;
+  height: 100%;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
-  opacity: 0
+  opacity: 0;
+  height: 0;
 }
 </style>

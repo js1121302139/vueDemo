@@ -26,12 +26,15 @@ export default {
       logo
     };
   },
+  created(){
+
+  },
   methods:{
     ...mapActions(['setA']),
   },
   computed:{
     ...mapGetters(['getA']),
-    ...mapState(['a'])
+    ...mapState(['a','isLogin'])
   }
 };
 </script>
